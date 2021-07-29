@@ -1,0 +1,23 @@
+
+A
+gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+e
+5app/src/main/java/com/nedashkivskyi/randomuser/App.kt,c\f\cf40aaed186cf20ab5db5c5e8e44aa880bde53fd
+u
+Eapp/src/main/java/com/nedashkivskyi/randomuser/di/module/AppModule.kt,4\e\4ee08a0798a43efa340fdec18f8e599c482702b6
+u
+Eapp/src/main/java/com/nedashkivskyi/randomuser/di/module/ApiModule.kt,0\f\0f5ec028e6f269b56d8fcfd76d8fcc7ae3a141eb
+n
+>app/src/main/java/com/nedashkivskyi/randomuser/utils/Status.kt,3\1\316b0cff911a71df62b64c98eac185b50a8915fe
+}
+Mapp/src/main/java/com/nedashkivskyi/randomuser/utils/SerializableConverter.kt,6\8\68f8d7dcd38f2915f205b1782d7da2edc3348245
+“
+capp/src/main/java/com/nedashkivskyi/randomuser/ui/fragments/peopleList/AdapterPersonRecyclerView.kt,b\2\b203d96139d22ed57885164378a76fb5422d21ef
+Œ
+\app/src/main/java/com/nedashkivskyi/randomuser/ui/fragments/peopleList/PeopleListFragment.kt,6\6\66b98b2cedf7d2809f57fc57d7f98f2c689fe001
+{
+Kapp/src/main/java/com/nedashkivskyi/randomuser/ui/binding/BindingAdapter.kt,1\f\1f7d3ac1861cc31d8110a80382068ad22b3fd219
+Œ
+\app/src/main/java/com/nedashkivskyi/randomuser/ui/fragments/personData/PersonDataFragment.kt,e\b\eb69a9923dcc4734e0e8d39597dfaa39e3c8f970

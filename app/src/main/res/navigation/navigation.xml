@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/peopleListFragment">
+
+    <fragment
+        android:id="@+id/peopleListFragment"
+        android:name="com.nedashkivskyi.randomuser.ui.fragments.peopleList.PeopleListFragment"
+        android:label="fragmentPeopleList"
+        tools:layout="@layout/fragment_people_list" >
+
+        <action
+            android:id="@+id/action_peopleListFragment_to_personDataFragment"
+            app:destination="@id/personDataFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/personDataFragment"
+        android:name="com.nedashkivskyi.randomuser.ui.fragments.personData.PersonDataFragment"
+        android:label="fragmentPersonData"
+        tools:layout="@layout/fragment_person_data">
+
+        <argument
+            android:name="person"
+            app:argType="string"/>
+    </fragment>
+</navigation>
