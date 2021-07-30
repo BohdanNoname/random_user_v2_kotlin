@@ -20,7 +20,7 @@ data class Info(
 
 @kotlinx.serialization.Serializable
 @Entity(tableName = Constants.TABLE_NAME)
-data class Result (
+data class Result(
     @PrimaryKey(autoGenerate = true) var _id: Int,
     @ColumnInfo(name = "gender", defaultValue = "null") var gender: String?,
     @Embedded var name: Name,
@@ -34,7 +34,45 @@ data class Result (
     @Embedded var id: Id,
     @Embedded var picture: Picture,
     @ColumnInfo(name = "nat", defaultValue = "null") var nat: String?
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Result
+
+        if (gender != other.gender) return false
+        if (name != other.name) return false
+        if (location != other.location) return false
+        if (email != other.email) return false
+        if (login != other.login) return false
+        if (dob != other.dob) return false
+        if (registered != other.registered) return false
+        if (phone != other.phone) return false
+        if (cell != other.cell) return false
+        if (id != other.id) return false
+        if (picture != other.picture) return false
+        if (nat != other.nat) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = gender?.hashCode() ?: 0
+        result = 31 * result + name.hashCode()
+        result = 31 * result + location.hashCode()
+        result = 31 * result + (email?.hashCode() ?: 0)
+        result = 31 * result + login.hashCode()
+        result = 31 * result + dob.hashCode()
+        result = 31 * result + registered.hashCode()
+        result = 31 * result + (phone?.hashCode() ?: 0)
+        result = 31 * result + (cell?.hashCode() ?: 0)
+        result = 31 * result + id.hashCode()
+        result = 31 * result + picture.hashCode()
+        result = 31 * result + (nat?.hashCode() ?: 0)
+        return result
+    }
+}
 
 @kotlinx.serialization.Serializable
 data class Dob(

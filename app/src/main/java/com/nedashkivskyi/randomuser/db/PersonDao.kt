@@ -17,7 +17,7 @@ interface PersonDao {
     @Query("DELETE FROM ${Constants.TABLE_NAME}")
     fun deleteAll()
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(person: Result?)
 
     @Update

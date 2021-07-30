@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/deleteAll"
+        android:title="Delete All People" />
+
+    <item
+        android:id="@+id/sortMenu"
+        android:title="Sort List">
+
+        <menu>
+            <item
+                android:id="@+id/fromOldToNew"
+                android:title="OLD -> NEW" />
+
+            <item
+                android:id="@+id/fromNewToOld"
+                android:title="NEW -> OLD" />
+
+            <item
+                android:id="@+id/byAgeFromYoungToOld"
+                android:title="YOUNG -> OLD" />
+
+            <item
+                android:id="@+id/byAgeFromOldToYoung"
+                android:title="OLD -> YOUNG" />
+
+            <item
+                android:id="@+id/bySurnameFromAtoZ"
+                android:title="A -> Z (Surname)" />
+
+            <item
+                android:id="@+id/bySurnameFromZtoA"
+                android:title="Z -> A (Surname)" />
+
+        </menu>
+
+    </item>
+</menu>
