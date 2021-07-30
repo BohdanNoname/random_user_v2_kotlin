@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/Android/Test/RandomUserV2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Projects/Android/Test/RandomUserV2/app/src/main/res/layout/fragment_blank.xml" value="0.15416666666666667" />
         <entry key="..\:/Projects/Android/Test/RandomUserV2/app/src/main/res/layout/fragment_people_list.xml" value="0.2554347826086957" />
         <entry key="..\:/Projects/Android/Test/RandomUserV2/app/src/main/res/layout/fragment_person_data.xml" value="0.19791666666666666" />
         <entry key="..\:/Projects/Android/Test/RandomUserV2/app/src/main/res/layout/person_row_item.xml" value="0.21" />

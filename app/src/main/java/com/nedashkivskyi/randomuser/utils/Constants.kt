@@ -7,5 +7,5 @@ object Constants {
     const val TABLE_NAME = "random_people_table"
     const val BASE_URL: String = "https://randomuser.me/api/?format=json"
 
-    const val PERSON_ID_KEY: String = "PERSON_ID_KEY"
+    const val BUNDLE_KEY_SORTING_TYPE: String = "BUNDLE_KEY_SORTING_TYPE"
 }

@@ -17,12 +17,7 @@ class DbViewModel @Inject constructor(
     private val repository: DbRepositoryImpl
 ) : ViewModel(){
 
-    private var _allPeople: MutableLiveData<List<Result>> = MutableLiveData()
-        val allPeople: LiveData<List<Result>> = repository.getAll()
-
-//    init {
-//        _allPeople = repository.getAll() as MutableLiveData<List<Result>>
-//    }
+    val allPeople: LiveData<List<Result>> = repository.getAll()
 
     private val _peopleListById: MutableLiveData<List<Result>> = MutableLiveData()
         val peopleListById: LiveData<List<Result>> = _peopleListById
@@ -49,7 +44,4 @@ class DbViewModel @Inject constructor(
     fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAll()
         }
-
-    fun sortedList(type: SortedType?): List<Result> =
-        SortedPeopleList.sortedPeopleList(allPeople.value!!, type!!)
 }

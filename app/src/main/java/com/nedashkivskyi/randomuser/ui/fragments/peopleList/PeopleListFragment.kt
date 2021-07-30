@@ -1,6 +1,5 @@
 package com.nedashkivskyi.randomuser.ui.fragments.peopleList
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -12,27 +11,22 @@ import com.nedashkivskyi.randomuser.R
 import com.nedashkivskyi.randomuser.databinding.FragmentPeopleListBinding
 import com.nedashkivskyi.randomuser.pojo.Result
 import com.nedashkivskyi.randomuser.ui.activities.MainActivity
+import com.nedashkivskyi.randomuser.utils.Constants
+import com.nedashkivskyi.randomuser.utils.SerializableConverter
 import com.nedashkivskyi.randomuser.utils.Status
 import com.nedashkivskyi.randomuser.utils.sorting.SortedPeopleList
 import com.nedashkivskyi.randomuser.utils.sorting.SortedType
 import com.nedashkivskyi.randomuser.viewModel.DbViewModel
 import com.nedashkivskyi.randomuser.viewModel.PersonViewModel
-import com.nedashkivskyi.randomuser.viewModel.SortedTypeViewModel
 import javax.inject.Inject
 
 class PeopleListFragment : Fragment() {
 
     private lateinit var binding: FragmentPeopleListBinding
-    @Inject
-    lateinit var personViewModel: PersonViewModel
-    @Inject
-    lateinit var dbViewModel: DbViewModel
-    @Inject
-    lateinit var adapter: AdapterPersonRecyclerView
-    @Inject
-    lateinit var sortedTypeViewModel: SortedTypeViewModel
-    @Inject
-    lateinit var dialog: DeleteAllPeopleListAlertDialog
+    @Inject lateinit var personViewModel: PersonViewModel
+    @Inject lateinit var dbViewModel: DbViewModel
+    @Inject lateinit var adapter: AdapterPersonRecyclerView
+    @Inject lateinit var dialog: DeleteAllPeopleListAlertDialog
 
     private lateinit var type: SortedType
     private lateinit var recyclerView: RecyclerView
@@ -42,16 +36,19 @@ class PeopleListFragment : Fragment() {
         (activity as MainActivity).appComponent.inject(this)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        initConfig(inflater, container)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("TAG", "onCreate: ")
+        val typeFromSavedInstanceState = savedInstanceState?.getString(Constants.BUNDLE_KEY_SORTING_TYPE)
+        type = if (typeFromSavedInstanceState != null) {
+            SerializableConverter.decodeFromString(typeFromSavedInstanceState)
+        } else {
+            SortedType.FROM_NEW_TO_OLD
+        }
+    }
 
-        sortedTypeViewModel.sortedType.observe(viewLifecycleOwner, {
-            type = it
-        })
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        initConfig(inflater, container)
 
         personViewModel.res.observe(viewLifecycleOwner, {
             when (it.status) {
@@ -110,8 +107,9 @@ class PeopleListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onStop() {
-        super.onStop()
-        sortedTypeViewModel.changeSortedType(type)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val typeStr = SerializableConverter.encodeToString(type)
+        outState.putString(Constants.BUNDLE_KEY_SORTING_TYPE, typeStr)
     }
 }

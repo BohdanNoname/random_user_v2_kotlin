@@ -29,7 +29,8 @@
             android:addNewPerson="@{personViewModel}"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/fab" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
