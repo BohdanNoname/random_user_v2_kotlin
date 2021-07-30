@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class PersonViewModel @Inject constructor(
     private val apiRepository: ApiRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _res: MutableLiveData<State<PersonResponse>> = MutableLiveData()
     val res: LiveData<State<PersonResponse>> = _res
@@ -22,9 +22,9 @@ class PersonViewModel @Inject constructor(
     fun createQueryForNewPerson() = viewModelScope.launch(Dispatchers.IO) {
         _res.postValue(State.loading(null))
         apiRepository.getPerson().let {
-            if (it.isSuccessful){
+            if (it.isSuccessful) {
                 _res.postValue(State.success(it.body()))
-            } else{
+            } else {
                 _res.postValue(State.error(it.body(), it.errorBody().toString()))
             }
         }

@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nedashkivskyi.randomuser.pojo.Result
 import com.nedashkivskyi.randomuser.repository.dbRepo.DbRepositoryImpl
-import kotlinx.coroutines.CoroutineScope
+import com.nedashkivskyi.randomuser.utils.sorting.SortedPeopleList
+import com.nedashkivskyi.randomuser.utils.sorting.SortedType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -16,14 +17,21 @@ class DbViewModel @Inject constructor(
     private val repository: DbRepositoryImpl
 ) : ViewModel(){
 
-//    private val _allPeople: MutableLiveData<List<Result>> = MutableLiveData()
-    val allPeople: LiveData<List<Result>> = repository.getAll()
+    private var _allPeople: MutableLiveData<List<Result>> = MutableLiveData()
+        val allPeople: LiveData<List<Result>> = repository.getAll()
+
+//    init {
+//        _allPeople = repository.getAll() as MutableLiveData<List<Result>>
+//    }
 
     private val _peopleListById: MutableLiveData<List<Result>> = MutableLiveData()
         val peopleListById: LiveData<List<Result>> = _peopleListById
 
     fun insert(person: Result?) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(person)
+        val lastPerson = allPeople.value?.size!! - 1
+        if (allPeople.value?.size == 0 || person?.equals(allPeople.value?.get(lastPerson)) != true){
+            repository.insert(person)
+        }
     }
 
     fun update(person: Result) = viewModelScope.launch(Dispatchers.IO) {
@@ -41,4 +49,7 @@ class DbViewModel @Inject constructor(
     fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAll()
         }
+
+    fun sortedList(type: SortedType?): List<Result> =
+        SortedPeopleList.sortedPeopleList(allPeople.value!!, type!!)
 }
